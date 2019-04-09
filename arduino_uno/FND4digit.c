@@ -22,8 +22,10 @@ char FND4digit_font[10] = {
 	~(1 << FND_a | 1 << FND_b | 1 << FND_c | 1 << FND_d | 1 << FND_e | 1 << FND_f | 1 << FND_g),
 	~(1 << FND_a | 1 << FND_b | 1 << FND_c | 1 << FND_f | 1 << FND_g)
 };
+
 char FND4digit_digit[4] = {1 << digit1, 1 << digit2, 1 << digit3, 1 << digit4};
 char FND[4];
+
 void FND4digit_main(void){
 	
 	unsigned int number = 5000;

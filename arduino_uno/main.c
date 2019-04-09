@@ -11,9 +11,11 @@
 #include "LEDBar.h"
 #include "FND.h"
 
+extern int Dot_matrix_main(void);
+
 int main(void)
 {
-    FND4digit_main();
+    Dot_matrix_main();
 	
     while (1) 
     {

@@ -120,6 +120,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Dot_matrix.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Dot_matrix.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="FND.c">
       <SubType>compile</SubType>
     </Compile>
