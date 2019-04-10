@@ -9,8 +9,10 @@
 #ifndef FND4DIGIT_H_
 #define FND4DIGIT_H_
 
-#define FND_DDR DDRD
-#define FND_PORT PORTD
+#define FND_DATA_DDR DDRD
+#define FND_DATA_PORT PORTD
+#define FND_COM_DDR DDRB
+#define FND_COM_PORT PORTB
 #define FND_g 0
 #define FND_c 1
 #define FND_p 2

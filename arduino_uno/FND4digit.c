@@ -74,8 +74,8 @@ void FND4digit_main(void){
 			if(lap_flag)FND_update_time(msec, sec);
 		}
 		for(int i=0;i<4;i++){
-			PORTB = FND4digit_digit[i];
-			FND_PORT = FND[i];
+			FND_COM_PORT = FND4digit_digit[i];
+			FND_DATA_PORT = FND[i];
 			_delay_ms(2);
 		}
 	
@@ -96,17 +96,17 @@ void FND_update_time(int msec, char sec){
 	return;
 }
 void FND4digit_init(void){
-	DDRB |= 0b00001111;
-	PORTB &= 0b11110000;
-	FND_DDR |= 0b11111111;
-	FND_PORT |= 0b11111111;
+	FND_COM_DDR |= 0b00001111;
+	FND_COM_PORT &= 0b11110000;
+	FND_DATA_DDR |= 0b11111111;
+	FND_DATA_PORT |= 0b11111111;
 	return;
 }
 void FND4digit_test(void){
 	for(int j=0;j<4;j++){
-		PORTB = FND4digit_digit[j];
+		FND_COM_PORT = FND4digit_digit[j];
 		for(int i=0;i<10;i++){
-			FND_PORT = FND4digit_font[i];
+			FND_DATA_PORT = FND4digit_font[i];
 			_delay_ms(500);
 		}
 	}

@@ -9,13 +9,62 @@
 #include <util/delay.h>
 #include "Dot_matrix.h"
 
-char dotmatrix_row[8];
+/*ISR(TIMER0_COMPA_vect){      //Timer.c의 내용을 수정
+	static int msec = 0;
+	static char i = 0;
+	msec++;
+	i++;
+	if(i>=8)i=0;
+	if(i<4){
+		dot_matrix_comm_high_PORT &= 0b11110000;
+		dot_matrix_comm_low_PORT &= 0b11110000;
+		dot_matrix_comm_low_PORT |= 1 << i;
+		dot_matrix_data_PORT = dotmatrix_row[i];
+	}
+	else {
+		dot_matrix_comm_low_PORT &= 0b11110000;
+		dot_matrix_comm_high_PORT &= 0b11110000;
+		dot_matrix_comm_high_PORT |= 1 << (i-4);
+		dot_matrix_data_PORT = dotmatrix_row[i];
+	}
+	if(!(msec%500))PORTB ^= 1<<PORTB5;
+}*/
 
-int Dot_matrix_main(void){
-	//char pattern1=0, pattern2=0, char_num=0;
-	//int msec = 0;
-	
-	const char JEONG[8] = {
+char dotmatrix_row[8];
+char dotmatrix_buffer[8];
+char JEONG[8] = {
+	0b00000101,
+	0b11011001,
+	0b10101101,
+	0b01110101,
+	0b11111111,
+	0b10000011,
+	0b01111101,
+	0b10000011
+};
+const char KYOUNG[8] = {
+	0b00001101,
+	0b11101001,
+	0b11011101,
+	0b00111001,
+	0b11111101,
+	0b10000011,
+	0b01111101,
+	0b10000011
+};
+const char YOON[8] = {
+	0b10000011,
+	0b01111101,
+	0b10000011,
+	0b11111111,
+	0b00000001,
+	0b11010111,
+	0b01111111,
+	0b00000001
+};
+
+char name[3][8] = {
+	{
 		0b00000101,
 		0b11011001,
 		0b10101101,
@@ -24,8 +73,8 @@ int Dot_matrix_main(void){
 		0b10000011,
 		0b01111101,
 		0b10000011
-		};
-	const char KYOUNG[8] = {
+	},
+	{
 		0b00001101,
 		0b11101001,
 		0b11011101,
@@ -34,8 +83,8 @@ int Dot_matrix_main(void){
 		0b10000011,
 		0b01111101,
 		0b10000011
-	};
-	const char YOON[8] = {
+	},
+	{
 		0b10000011,
 		0b01111101,
 		0b10000011,
@@ -44,40 +93,14 @@ int Dot_matrix_main(void){
 		0b11010111,
 		0b01111111,
 		0b00000001
-	};
+	}
+};
+int Dot_matrix_main(void){
+	//char pattern1=0, pattern2=0, char_num=0;
+	//int msec = 0;
 	
-	char name[3][8] = {
-			{
-				0b00000101,
-				0b11011001,
-				0b10101101,
-				0b01110101,
-				0b11111111,
-				0b10000011,
-				0b01111101,
-				0b10000011
-			},
-			{
-				0b00001101,
-				0b11101001,
-				0b11011101,
-				0b00111001,
-				0b11111101,
-				0b10000011,
-				0b01111101,
-				0b10000011
-			},
-			{
-				0b10000011,
-				0b01111101,
-				0b10000011,
-				0b11111111,
-				0b00000001,
-				0b11010111,
-				0b01111111,
-				0b00000001
-			}
-		};
+	
+	
 	
 	/*for(int j=0;j<8;j++){
 		name[0][j] = JEONG[j];
@@ -231,4 +254,15 @@ void dotmatrix_flow(char (*data)[8], char char_len, char interval ){
 		}
 	}
 	return;
+}
+void dotmatrix_flow_buffer(char (*data)[8], char char_len){
+	for(int k=0;k<char_len;k++){
+		for(int j=0;j<8;j++){
+			for(int i=0;i<8;i++){
+				dotmatrix_buffer[i] = data[(k+1)%char_len][i]>>(8-j) | data[k][i]<<j;
+			}
+			dotmatrix_update(dotmatrix_buffer);
+			_delay_ms(200);
+		}
+	}
 }

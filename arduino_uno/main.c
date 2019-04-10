@@ -8,18 +8,17 @@
 #include <avr/io.h>
 #define F_CPU 16000000UL
 #include <util/delay.h>
-#include "LEDBar.h"
-#include "FND.h"
+#include "FND4digit.h"
 
-extern int Dot_matrix_main(void);
+extern int Timer_main(void);
 
 int main(void)
 {
-    Dot_matrix_main();
+    Timer_main();
 	
     while (1) 
     {
-		FND_test();
+		
     }
 }
 

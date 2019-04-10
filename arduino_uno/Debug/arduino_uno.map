@@ -5,7 +5,7 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
-                              FND.o (__do_copy_data)
+                              Dot_matrix.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
                               Dot_matrix.o (__do_clear_bss)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
@@ -15,6 +15,7 @@ Allocating common symbols
 Common symbol       size              file
 
 FND                 0x4               FND4digit.o
+dotmatrix_buffer    0x8               Dot_matrix.o
 dotmatrix_row       0x8               Dot_matrix.o
 
 Discarded input sections
@@ -24,47 +25,64 @@ Discarded input sections
  .text          0x00000000        0x0 Dot_matrix.o
  .data          0x00000000        0x0 Dot_matrix.o
  .bss           0x00000000        0x0 Dot_matrix.o
+ .text.dotmatrix_test
+                0x00000000       0xa8 Dot_matrix.o
  .text.dotmatrix_operator
                 0x00000000       0x6e Dot_matrix.o
  .text.dotmatrix_update
                 0x00000000       0x16 Dot_matrix.o
+ .text.dotmatrix_init
+                0x00000000       0x28 Dot_matrix.o
+ .text.Dot_matrix_main
+                0x00000000        0xa Dot_matrix.o
  .text.dotmatrix_flow
                 0x00000000      0x158 Dot_matrix.o
+ .text.dotmatrix_flow_buffer
+                0x00000000      0x130 Dot_matrix.o
+ .data.name     0x00000000       0x18 Dot_matrix.o
+ .rodata.YOON   0x00000000        0x8 Dot_matrix.o
+ .rodata.KYOUNG
+                0x00000000        0x8 Dot_matrix.o
+ .data.JEONG    0x00000000        0x8 Dot_matrix.o
+ .debug_info    0x00000000      0x527 Dot_matrix.o
+ .debug_abbrev  0x00000000      0x1c9 Dot_matrix.o
+ .debug_loc     0x00000000      0x803 Dot_matrix.o
+ .debug_aranges
+                0x00000000       0x50 Dot_matrix.o
+ .debug_ranges  0x00000000      0x130 Dot_matrix.o
+ .debug_line    0x00000000      0x3cb Dot_matrix.o
+ .debug_str     0x00000000      0x27f Dot_matrix.o
+ .comment       0x00000000       0x31 Dot_matrix.o
+ .debug_frame   0x00000000      0x144 Dot_matrix.o
+ COMMON         0x00000000       0x10 Dot_matrix.o
  .text          0x00000000        0x0 FND.o
  .data          0x00000000        0x0 FND.o
  .bss           0x00000000        0x0 FND.o
  .text.FND_init
                 0x00000000        0x8 FND.o
+ .text.FND_test
+                0x00000000       0x26 FND.o
  .text.FND_main
                 0x00000000        0xa FND.o
+ .data.FND_font
+                0x00000000        0xa FND.o
+ .debug_info    0x00000000      0x192 FND.o
+ .debug_abbrev  0x00000000      0x129 FND.o
+ .debug_loc     0x00000000       0x96 FND.o
+ .debug_aranges
+                0x00000000       0x30 FND.o
+ .debug_ranges  0x00000000       0x20 FND.o
+ .debug_line    0x00000000      0x166 FND.o
+ .debug_str     0x00000000      0x1d0 FND.o
+ .comment       0x00000000       0x31 FND.o
+ .debug_frame   0x00000000       0x44 FND.o
  .text          0x00000000        0x0 FND4digit.o
  .data          0x00000000        0x0 FND4digit.o
  .bss           0x00000000        0x0 FND4digit.o
- .text.FND_update_value
-                0x00000000       0x6e FND4digit.o
- .text.FND_update_time
-                0x00000000       0x9e FND4digit.o
- .text.FND4digit_init
-                0x00000000       0x18 FND4digit.o
  .text.FND4digit_main
                 0x00000000       0xd4 FND4digit.o
  .text.FND4digit_test
                 0x00000000       0x38 FND4digit.o
- .data.FND4digit_digit
-                0x00000000        0x4 FND4digit.o
- .data.FND4digit_font
-                0x00000000        0xa FND4digit.o
- .debug_info    0x00000000      0x346 FND4digit.o
- .debug_abbrev  0x00000000      0x1c1 FND4digit.o
- .debug_loc     0x00000000      0x435 FND4digit.o
- .debug_aranges
-                0x00000000       0x40 FND4digit.o
- .debug_ranges  0x00000000       0x30 FND4digit.o
- .debug_line    0x00000000      0x2ea FND4digit.o
- .debug_str     0x00000000      0x24d FND4digit.o
- .comment       0x00000000       0x31 FND4digit.o
- .debug_frame   0x00000000       0x84 FND4digit.o
- COMMON         0x00000000        0x4 FND4digit.o
  .text          0x00000000        0x0 LEDBar.o
  .data          0x00000000        0x0 LEDBar.o
  .bss           0x00000000        0x0 LEDBar.o
@@ -97,13 +115,14 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text          0x00000000        0x0 Timer.o
+ .data          0x00000000        0x0 Timer.o
+ .bss           0x00000000        0x0 Timer.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
  .text.libgcc.mul
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
- .text.libgcc.div
-                0x00000000       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
  .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
  .text.libgcc.prologue
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
@@ -166,8 +185,6 @@ Discarded input sections
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
  .text.libgcc.mul
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
- .text.libgcc.div
-                0x00000000       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
  .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
  .text.libgcc.prologue
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
@@ -199,6 +216,7 @@ LOAD FND.o
 LOAD FND4digit.o
 LOAD LEDBar.o
 LOAD main.o
+LOAD Timer.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
 END GROUP
@@ -306,7 +324,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1b4
+.text           0x00000000      0x324
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -386,32 +404,44 @@ END GROUP
                 0x000000a2                __vector_21
                 0x000000a2                __vector_15
                 0x000000a2                __vector_8
-                0x000000a2                __vector_14
                 0x000000a2                __vector_10
                 0x000000a2                __vector_16
                 0x000000a2                __vector_18
                 0x000000a2                __vector_20
                 0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.dotmatrix_test
-                0x000000a6       0xa8 Dot_matrix.o
-                0x000000a6                dotmatrix_test
- .text.dotmatrix_init
-                0x0000014e       0x28 Dot_matrix.o
-                0x0000014e                dotmatrix_init
- .text.Dot_matrix_main
-                0x00000176        0xa Dot_matrix.o
-                0x00000176                Dot_matrix_main
- .text.FND_test
-                0x00000180       0x26 FND.o
-                0x00000180                FND_test
- .text.main     0x000001a6        0xa main.o
-                0x000001a6                main
-                0x000001b0                . = ALIGN (0x2)
+ .text.FND_update_value
+                0x000000a6       0x6e FND4digit.o
+                0x000000a6                FND_update_value
+ .text.FND_update_time
+                0x00000114       0x9e FND4digit.o
+                0x00000114                FND_update_time
+ .text.FND4digit_init
+                0x000001b2       0x18 FND4digit.o
+                0x000001b2                FND4digit_init
+ .text.main     0x000001ca        0x6 main.o
+                0x000001ca                main
+ .text.__vector_14
+                0x000001d0       0x96 Timer.o
+                0x000001d0                __vector_14
+ .text.Timer0_init
+                0x00000266       0x1c Timer.o
+                0x00000266                Timer0_init
+ .text.Timer_main
+                0x00000282       0x4e Timer.o
+                0x00000282                Timer_main
+ .text.libgcc.div
+                0x000002d0       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
+                0x000002d0                _div
+                0x000002d0                __divmodhi4
+ .text.libgcc.div
+                0x000002f8       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
+                0x000002f8                __udivmodhi4
+                0x00000320                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001b0        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000001b0                _exit
-                0x000001b0                exit
+ .fini9         0x00000320        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000320                _exit
+                0x00000320                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -430,41 +460,47 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001b0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000320        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000001b4                _etext = .
+                0x00000324                _etext = .
 
-.data           0x00800100        0xa load address 0x000001b4
+.data           0x00800100        0xe load address 0x00000324
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.FND_font
-                0x00800100        0xa FND.o
-                0x00800100                FND_font
+ .data.FND4digit_digit
+                0x00800100        0x4 FND4digit.o
+                0x00800100                FND4digit_digit
+ .data.FND4digit_font
+                0x00800104        0xa FND4digit.o
+                0x00800104                FND4digit_font
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.r*)
-                0x0080010a                . = ALIGN (0x2)
-                0x0080010a                _edata = .
-                0x0080010a                PROVIDE (__data_end, .)
+                0x0080010e                . = ALIGN (0x2)
+                0x0080010e                _edata = .
+                0x0080010e                PROVIDE (__data_end, .)
 
-.bss            0x0080010a        0x8
-                0x0080010a                PROVIDE (__bss_start, .)
+.bss            0x0080010e        0x7
+                0x0080010e                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.i.1767    0x0080010e        0x1 Timer.o
+ .bss.msec.1766
+                0x0080010f        0x2 Timer.o
  *(COMMON)
- COMMON         0x0080010a        0x8 Dot_matrix.o
-                0x0080010a                dotmatrix_row
-                0x00800112                PROVIDE (__bss_end, .)
-                0x000001b4                __data_load_start = LOADADDR (.data)
-                0x000001be                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800111        0x4 FND4digit.o
+                0x00800111                FND
+                0x00800115                PROVIDE (__bss_end, .)
+                0x00000324                __data_load_start = LOADADDR (.data)
+                0x00000332                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800112        0x0
+.noinit         0x00800115        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800112                _end = .
+                0x00800115                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -506,10 +542,10 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 Dot_matrix.o
+ .comment       0x00000000       0x30 FND4digit.o
                                  0x31 (size before relaxing)
- .comment       0x00000030       0x31 FND.o
  .comment       0x00000030       0x31 main.o
+ .comment       0x00000030       0x31 Timer.o
 
 .note.gnu.avr.deviceinfo
                 0x00000000       0x40
@@ -531,59 +567,59 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x98
+.debug_aranges  0x00000000       0x90
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x48 Dot_matrix.o
+                0x00000000       0x40 FND4digit.o
  .debug_aranges
-                0x00000048       0x30 FND.o
+                0x00000040       0x20 main.o
  .debug_aranges
-                0x00000078       0x20 main.o
+                0x00000060       0x30 Timer.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xc7f
+.debug_info     0x00000000      0xc07
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_info    0x000005f4      0x44b Dot_matrix.o
- .debug_info    0x00000a3f      0x192 FND.o
- .debug_info    0x00000bd1       0xae main.o
+ .debug_info    0x000005f4      0x346 FND4digit.o
+ .debug_info    0x0000093a       0x98 main.o
+ .debug_info    0x000009d2      0x235 Timer.o
 
-.debug_abbrev   0x00000000      0x8ab
+.debug_abbrev   0x00000000      0x984
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_abbrev  0x000005a2      0x178 Dot_matrix.o
- .debug_abbrev  0x0000071a      0x129 FND.o
- .debug_abbrev  0x00000843       0x68 main.o
+ .debug_abbrev  0x000005a2      0x1c1 FND4digit.o
+ .debug_abbrev  0x00000763       0x68 main.o
+ .debug_abbrev  0x000007cb      0x1b9 Timer.o
 
-.debug_line     0x00000000      0x643
+.debug_line     0x00000000      0x64b
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_line    0x00000133      0x358 Dot_matrix.o
- .debug_line    0x0000048b      0x166 FND.o
- .debug_line    0x000005f1       0x52 main.o
+ .debug_line    0x00000133      0x2ea FND4digit.o
+ .debug_line    0x0000041d       0x3f main.o
+ .debug_line    0x0000045c      0x1ef Timer.o
 
-.debug_frame    0x00000000      0x13c
+.debug_frame    0x00000000      0x124
  *(.debug_frame)
- .debug_frame   0x00000000       0xd4 Dot_matrix.o
- .debug_frame   0x000000d4       0x44 FND.o
- .debug_frame   0x00000118       0x24 main.o
+ .debug_frame   0x00000000       0x84 FND4digit.o
+ .debug_frame   0x00000084       0x24 main.o
+ .debug_frame   0x000000a8       0x7c Timer.o
 
-.debug_str      0x00000000      0x462
+.debug_str      0x00000000      0x458
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0x21f Dot_matrix.o
-                                0x258 (size before relaxing)
- .debug_str     0x00000427       0x2f FND.o
-                                0x1d0 (size before relaxing)
- .debug_str     0x00000456        0xc main.o
-                                0x16a (size before relaxing)
+ .debug_str     0x00000208      0x214 FND4digit.o
+                                0x24d (size before relaxing)
+ .debug_str     0x0000041c       0x17 main.o
+                                0x15c (size before relaxing)
+ .debug_str     0x00000433       0x25 Timer.o
+                                0x216 (size before relaxing)
 
-.debug_loc      0x00000000      0x5d7
+.debug_loc      0x00000000      0x5a8
  *(.debug_loc)
- .debug_loc     0x00000000      0x541 Dot_matrix.o
- .debug_loc     0x00000541       0x96 FND.o
+ .debug_loc     0x00000000      0x435 FND4digit.o
+ .debug_loc     0x00000435      0x173 Timer.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -603,11 +639,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x110
+.debug_ranges   0x00000000       0x78
  *(.debug_ranges)
- .debug_ranges  0x00000000       0xe0 Dot_matrix.o
- .debug_ranges  0x000000e0       0x20 FND.o
- .debug_ranges  0x00000100       0x10 main.o
+ .debug_ranges  0x00000000       0x30 FND4digit.o
+ .debug_ranges  0x00000030       0x10 main.o
+ .debug_ranges  0x00000040       0x38 Timer.o
 
 .debug_macro
  *(.debug_macro)
