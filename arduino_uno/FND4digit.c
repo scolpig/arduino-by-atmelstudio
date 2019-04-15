@@ -95,6 +95,13 @@ void FND_update_time(int msec, char sec){
 	FND[3] = FND4digit_font[sec/10%10];
 	return;
 }
+void FND_clock(char sec, char min){
+	FND[0] = FND4digit_font[sec%10];
+	FND[1] = FND4digit_font[sec/10%10];
+	FND[2] = FND4digit_font[min%10] & ~(1 << FND_p);
+	FND[3] = FND4digit_font[min/10%10];
+	return;
+}
 void FND4digit_init(void){
 	FND_COM_DDR |= 0b00001111;
 	FND_COM_PORT &= 0b11110000;

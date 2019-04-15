@@ -30,5 +30,6 @@ void FND4digit_init(void);
 void FND4digit_test(void);
 void FND_update_value(int number);
 void FND_update_time(int msec, char sec);
+void FND_clock(char sec, char min);
 
 #endif /* FND4DIGIT_H_ */
