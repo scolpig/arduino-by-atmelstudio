@@ -104,3 +104,9 @@ void Timer0_init(void){
 	TIMSK0 |= 1 << OCIE0A;           //OC0A 비교 매치 인터럽트 활성화
 	return;
 }
+void Timer0_HCSR06_init(void){
+	TCCR0A |= 1 << WGM01;            //CTC Mode
+	TCCR0B |= 1 << CS02 | 1 << CS00; //1024분주
+	OCR0A = 255;					
+	return;
+}

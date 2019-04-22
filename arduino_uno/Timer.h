@@ -10,6 +10,7 @@
 #define TIMER_H_
 
 void Timer0_init(void);
+void Timer0_HCSR06_init(void);
 
 
 

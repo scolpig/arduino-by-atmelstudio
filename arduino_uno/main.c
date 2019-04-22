@@ -10,11 +10,11 @@
 #include <util/delay.h>
 #include "FND4digit.h"
 
-extern int Keypad_main(void);
+extern int HC_SR04_main(void);
 
 int main(void)
 {
-    Keypad_main();
+    HC_SR04_main();
 	
     while (1) 
     {

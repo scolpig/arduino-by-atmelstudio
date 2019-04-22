@@ -128,6 +128,12 @@
     <Compile Include="Dot_matrix.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="External_INT.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="External_INT.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="FND.c">
       <SubType>compile</SubType>
     </Compile>
@@ -138,6 +144,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="FND4digit.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HC_SR04.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HC_SR04.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Keypad.c">
