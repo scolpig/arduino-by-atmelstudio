@@ -10,11 +10,11 @@
 #include <util/delay.h>
 #include "FND4digit.h"
 
-extern int HC_SR04_main(void);
+extern int DHT11_main(void);
 
 int main(void)
 {
-    HC_SR04_main();
+    DHT11_main();
 	
     while (1) 
     {

@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+DHT11.c
+
 Dot_matrix.c
 
 External_INT.c

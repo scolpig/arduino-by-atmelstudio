@@ -37,6 +37,7 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../DHT11.c \
 ../Dot_matrix.c \
 ../External_INT.c \
 ../FND.c \
@@ -56,6 +57,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+DHT11.o \
 Dot_matrix.o \
 External_INT.o \
 FND.o \
@@ -68,6 +70,7 @@ Timer.o \
 Uart.o
 
 OBJS_AS_ARGS +=  \
+DHT11.o \
 Dot_matrix.o \
 External_INT.o \
 FND.o \
@@ -80,6 +83,7 @@ Timer.o \
 Uart.o
 
 C_DEPS +=  \
+DHT11.d \
 Dot_matrix.d \
 External_INT.d \
 FND.d \
@@ -92,6 +96,7 @@ Timer.d \
 Uart.d
 
 C_DEPS_AS_ARGS +=  \
+DHT11.d \
 Dot_matrix.d \
 External_INT.d \
 FND.d \
@@ -117,6 +122,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+./DHT11.o: .././DHT11.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./Dot_matrix.o: .././Dot_matrix.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0

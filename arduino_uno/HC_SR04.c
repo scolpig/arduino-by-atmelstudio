@@ -11,8 +11,7 @@
 #include "Uart.h"
 #include "Timer.h"
 #include "HC_SR04.h"
-//#include ""
-
+#include "External_INT.h"
 
 char echo_time;
 
@@ -26,9 +25,9 @@ ISR(INT1_vect){
 int HC_SR04_main(void){
 	
 	char cm = 0, hight = 0;
+	
 	HC_SR04_init();
-	EICRA |= 1 << ISC00 | 1 << ISC01 | 1 << ISC11;
-	EIMSK |= 1 << INT0 | 1 << INT1;
+	EINT_init_for_HC_SR04();
 	Timer0_HCSR06_init();
 	UART0_init(9600);
 	sei();
