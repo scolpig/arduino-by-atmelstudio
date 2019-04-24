@@ -33,6 +33,7 @@ int DHT11_main(void){
 	}
 	return 0;
 }
+
 char DHT11_rx_byte(void){
 	char data = 0;
 	for(int i=0;i<8;i++){

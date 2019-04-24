@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+ADC.c
+
 DHT11.c
 
 Dot_matrix.c
@@ -19,6 +21,8 @@ Keypad.c
 LEDBar.c
 
 main.c
+
+measure.c
 
 Timer.c
 
