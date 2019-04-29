@@ -68,7 +68,11 @@ int measure_main(void){
 					printf("CDS value : %d.%d%dV \n", value/100%10, value/10%10, value%10);
 					long_key_flag = 0;
 				}
-				
+				else if(Keyscan() == 'F'){
+					value = ADC_converting_value(2);
+					printf("Distance : %d.%d%dV \n", value/100%10, value/10%10, value%10);
+					long_key_flag = 0;
+				}
 			}
 		}
 		else {

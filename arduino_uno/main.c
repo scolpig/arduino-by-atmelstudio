@@ -10,11 +10,11 @@
 #include <util/delay.h>
 #include "FND4digit.h"
 
-extern int measure_main(void);
+extern int ADC_main(void);
 
 int main(void)
 {
-    measure_main();
+    ADC_main();
 	
     while (1) 
     {

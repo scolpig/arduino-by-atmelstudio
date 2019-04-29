@@ -11,6 +11,7 @@
 
 int ADC_converting_value(char channel);
 void ADC_init(void);
-
+int volt_to_cm(int value);
+int volt_to_temperature(int value);
 
 #endif /* ADC_H_ */
