@@ -11,11 +11,12 @@
 
 #define Keypad_PORT_DDR DDRD
 #define Keypad_PORT PORTD
-#define Keypad_PIN_DDR DDRB
-#define Keypad_PIN_PORT PORTB
-#define Keypad_PIN PINB
+#define Keypad_PIN_DDR DDRD
+#define Keypad_PIN_PORT PORTD
+#define Keypad_PIN PIND
 
 void Keypad_init(void);
+void clock_Keypad_init(void);
 char Keyscan(void);
 char Keyscan_sub(void);
 

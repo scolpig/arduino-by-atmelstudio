@@ -8,9 +8,9 @@
 #define F_CPU 16000000UL
 #include <util/delay.h>
 #include <avr/interrupt.h>
-#include "Dot_matrix.h"
 #include "FND4digit.h"
 #include "Timer.h"
+#include "DHT11.h"
 
 extern char dotmatrix_row[8];
 extern char JEONG[8];
@@ -19,10 +19,12 @@ extern const char YOON[8];
 extern char name[3][8];
 extern char FND4digit_digit[4];
 extern char FND[4];
+extern char FND4digit_font[10];
 
-volatile char start_flag, lap_flag, clear_flag, time_flag;
+volatile char start_flag=1, lap_flag, clear_flag, time_flag, countdown_flag;
+volatile char speakout_flag;
 volatile int msec;
-volatile char i, sec, min;
+volatile char i, sec, min, cook_sec, cook_min;
 
 ISR(TIMER0_COMPA_vect){
 	
@@ -37,7 +39,7 @@ ISR(TIMER0_COMPA_vect){
 		}
 		//FND_clock(sec, min);
 	}
-	if(!(msec%10)){
+	/*if(!(msec%10)){
 		if(lap_flag)time_flag = 1;
 	}
 	if(clear_flag){
@@ -47,53 +49,76 @@ ISR(TIMER0_COMPA_vect){
 		msec = 0;
 		sec = 0;
 		min = 0;
-	}
+	}*/
 	i++;
 	if(i>=4)i=0;
-	FND_COM_PORT &= 0b11110000;
+	FND_COM_PORT &= 0b00001111;
+	FND_shift_out(FND[i]);
 	FND_COM_PORT |= FND4digit_digit[i];
-	FND_DATA_PORT = FND[i];
+	
 	//if(!(msec%500))PORTB ^= 1<<PORTB5;
 }
 
 int Timer_main(void){
-	char long_key_flag=1; 
-	//DDRB |= 1<<PORTB5;
-	DDRB &= ~(1<<PORTB4 | 1<<PORTB5);
-	FND4digit_init();
-	FND_update_value(0);
+	int red=0, blue=0;
+	char green = 0;
+	char tmpr = 0, old_tmpr = 0;
+	char count = 0;
+	char red_up_down_flag = 1;
+	char blue_up_down_flag = 1;
+	char green_up_down_flag = 1;
+	Timer1_init_fast_PWM_outA_SurvoMotor();
+	Timer2_init_fast_PWM_outA();
 	Timer0_init();
+	FND4digit_init_shiftR();
+	DHT11_init();
 	sei();
+	
 	while(1){
-		if(time_flag){
-			time_flag = 0;
-			FND_update_time(msec, sec);
+		count++;
+		if(count >=200){
+			count = 0;
+			old_tmpr = tmpr;
+			tmpr = getTemperature();
+			if(tmpr != 255){
+				FND_update_value(tmpr);
+				OCR1A = tmpr * 8 / 11 + 142;
+			}
+			else {
+				FND_update_value(old_tmpr + 1000);
+				tmpr = old_tmpr;
+			}
 		}
-		if(long_key_flag){
-			if(!(PINB & 0b00010000)){
-				_delay_us(1);
-				if(!(PINB & 0b00010000)){
-					start_flag = 1;
-					if(lap_flag)lap_flag = 0;
-					else lap_flag = 1;
-					long_key_flag = 0;
-				}
-			}
-			else if(!(PINB & 0b00100000)){
-				_delay_us(1);
-				if(!(PINB & 0b00100000)){
-					start_flag = 0;
-					lap_flag = 0;
-					clear_flag = 1;
-					long_key_flag = 0;
-				}
-			}
+		if(green_up_down_flag){
+			green += 4;
+			if(green >= 150)green_up_down_flag = 0;
 		}
 		else {
-			if((PINB & 0b00010000) && (PINB & 0b00100000)){
-				long_key_flag = 1;
-			}
+			green -= 4;
+			if(green <= 0)green_up_down_flag = 1;
 		}
+		if(red_up_down_flag){
+			red++;
+			if(red >= 150)red_up_down_flag = 0;
+		}
+		else {
+			red--;
+			if(red <= 0)red_up_down_flag = 1;
+		}
+		if(blue_up_down_flag){
+			blue += 2;
+			if(blue >= 150)blue_up_down_flag = 0;
+		}
+		else {
+			blue -= 2;
+			if(blue <= 0)blue_up_down_flag = 1;
+		}
+		//OCR1A = red;
+		OCR1B = blue;
+		OCR2A = green;
+		//FND_update_value(OCR1A);
+		
+		_delay_ms(30);
 	}
 	return 0;
 }
@@ -109,4 +134,36 @@ void Timer0_HCSR06_init(void){
 	TCCR0B |= 1 << CS02 | 1 << CS00; //1024분주
 	OCR0A = 255;					
 	return;
+}
+void Timer1_init_CTC_outA(void){
+	DDRB |= 1 << PORTB1;
+	TCCR1A |= 1 << COM1A0;				//CTC Mode
+	TCCR1B |= 1 << WGM12 | 1 << CS11;	//8분주
+	OCR1A = 0;							// 소리 끄기
+	return;
+}
+void Timer1_init_fast_PWM_outA(void){
+	DDRB |= 1 << PORTB1 | 1 << PORTB2;
+	TCCR1A |= 1 << COM1A1 | 1 << COM1A0 | 1 << COM1B1 | 1 << COM1B0 | 1 << WGM11;
+	TCCR1B |= 1 << WGM12 | 1 << WGM13 | 1 << CS10;
+	
+	OCR1A = 0;
+	OCR1B = 0;
+	ICR1 = 255;
+}
+void Timer2_init_fast_PWM_outA(void){
+	DDRB |= 1 << PORTB3;
+	TCCR2A |= 1 << COM2A1 | 1 << COM2A0 | 1 << WGM21 | 1 << WGM20;
+	TCCR2B |= 1 << CS20;
+
+	OCR2A = 0;
+}
+void Timer1_init_fast_PWM_outA_SurvoMotor(void){
+	DDRB |= 1 << PORTB1 | 1 << PORTB2;
+	TCCR1A |= 1 << COM1A1 | 1 << COM1A0 | 1 << COM1B1 | 1 << COM1B0 | 1 << WGM11;
+	TCCR1B |= 1 << WGM12 | 1 << WGM13 | 1 << CS12;
+	
+	OCR1A = 0;
+	OCR1B = 0;
+	ICR1 = 255;
 }

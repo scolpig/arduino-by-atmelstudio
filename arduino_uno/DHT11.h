@@ -20,5 +20,7 @@ void DHT11_data_input(void);
 void DHT11_init(void);
 void dumi_read(void);
 void DHT11_trigger(void);
+char getTemperature(void);		//호출 후 1.5초 후에 재호출 가능
+char getHumi(void);				//호출 후 1.5초 후에 재호출 가능
 
 #endif /* DHT11_H_ */

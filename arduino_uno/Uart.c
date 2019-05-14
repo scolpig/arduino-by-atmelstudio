@@ -22,8 +22,11 @@ int Uart_main(void){
 	UCSR0B |= 1 << RXCIE0 | 1 << RXEN0 | 1 << TXEN0;
 	UCSR0C |= 1 << UCSZ00 | 1 << UCSZ01;
 	
-	UBRR0H = (F_CPU/16/9600-1)>>8;
-	UBRR0L = (F_CPU/16/9600-1) & 0xFF;
+	/*UBRR0H = (F_CPU/16/9600-1)>>8;
+	UBRR0L = (F_CPU/16/9600-1) & 0xFF;*/
+	
+	UBRR0 = (F_CPU/16/9600-1);
+	
 	i = UDR0;
 	_delay_ms(1);
 	

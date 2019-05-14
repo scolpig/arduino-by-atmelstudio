@@ -7,14 +7,13 @@
 #include <avr/io.h>
 #define F_CPU 16000000UL
 #include <util/delay.h>
-#include "Uart.h"
 #include "Keypad.h"
 
+/*
 int Keypad_main(void){
 	int number=0;
 	char long_key_flag = 0;
 	Keypad_init();
-	UART0_init(9600);
 	while(1){
 		if(long_key_flag){
 			if(Keyscan() != 'A'){
@@ -29,10 +28,14 @@ int Keypad_main(void){
 			}
 		}
 	}
-}
+}*/
 void Keypad_init(void){
 	Keypad_PORT_DDR |= 0b11110000;
 	Keypad_PORT |= 0b11110000;
+	Keypad_PIN_DDR &= 0b11110000;
+	Keypad_PIN_PORT |= 0b00001111;
+}
+void clock_Keypad_init(void){
 	Keypad_PIN_DDR &= 0b11110000;
 	Keypad_PIN_PORT |= 0b00001111;
 }

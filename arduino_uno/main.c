@@ -8,14 +8,17 @@
 #include <avr/io.h>
 #define F_CPU 16000000UL
 #include <util/delay.h>
+#include <avr/interrupt.h>
 #include "FND4digit.h"
+#include "Timer.h"
 
-extern int ADC_main(void);
+extern int Timer_main(void);
 
 int main(void)
 {
-    ADC_main();
-	
+    
+	Timer_main();
+	sei();
     while (1) 
     {
 		

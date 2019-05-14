@@ -24,6 +24,8 @@ main.c
 
 measure.c
 
+Speaker.c
+
 Timer.c
 
 Uart.c

@@ -182,6 +182,12 @@
     <Compile Include="measure.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Speaker.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Speaker.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Timer.c">
       <SubType>compile</SubType>
     </Compile>
