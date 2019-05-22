@@ -4,6 +4,8 @@
 
 ADC.c
 
+Bluetooth.c
+
 DHT11.c
 
 Dot_matrix.c

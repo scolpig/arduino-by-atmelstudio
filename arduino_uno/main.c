@@ -12,12 +12,12 @@
 #include "FND4digit.h"
 #include "Timer.h"
 
-extern int Timer_main(void);
+extern int Uart_main(void);
 
 int main(void)
 {
     
-	Timer_main();
+	Uart_main();
 	sei();
     while (1) 
     {

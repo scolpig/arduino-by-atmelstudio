@@ -128,6 +128,12 @@
     <Compile Include="ADC.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Bluetooth.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Bluetooth.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="DHT11.c">
       <SubType>compile</SubType>
     </Compile>

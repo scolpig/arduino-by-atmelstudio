@@ -7,45 +7,63 @@
 #include <avr/io.h>
 #define F_CPU 16000000UL
 #include <util/delay.h>
+#include <avr/interrupt.h>
 #include <stdio.h>
+#include <string.h>
+#include "Uart.h"
 
-void TX0_char(char data);
-void UART0_init(unsigned long baud);
-void TX0_string(char *string);
+#define BUFFER_MAX 50
+#define COMMAND_MAX 10
+
+volatile char RX_data;
+volatile char RX_flag, RX_cmd_count ;
+
+char buffer[COMMAND_MAX][BUFFER_MAX];
+
+ISR(USART_RX_vect){
+	static char idx = 0, buf_idx=0;
+	RX_data = UDR0;
+	if(idx < BUFFER_MAX && RX_cmd_count <= COMMAND_MAX){
+		if(RX_data == '\r' || RX_data == '\n'){
+			buffer[buf_idx][idx] = '\0';
+			idx = 0;
+			RX_cmd_count++;
+						
+			buf_idx++;
+			buf_idx = buf_idx % COMMAND_MAX;
+		}
+		else buffer[buf_idx][idx++] = RX_data;
+	}
+	TX0_char(RX_data);
+	RX_flag = 1;
+}
 
 int Uart_main(void){
 	
 	char i, long_key_flag = 0;
-	
-	FILE* fpStdio = fdevopen(TX0_char, NULL);
-	
-	UCSR0B |= 1 << RXCIE0 | 1 << RXEN0 | 1 << TXEN0;
-	UCSR0C |= 1 << UCSZ00 | 1 << UCSZ01;
-	
-	/*UBRR0H = (F_CPU/16/9600-1)>>8;
-	UBRR0L = (F_CPU/16/9600-1) & 0xFF;*/
-	
-	UBRR0 = (F_CPU/16/9600-1);
-	
-	i = UDR0;
+	char cmd_idx = 0;
+	UART0_init(9600);
 	_delay_ms(1);
+	DDRB |= 1 << PORTB5;
+	PORTB &= ~(1 << PORTB5);
+	sei();
 	
 	while(1){
 		
-		if(long_key_flag){
-			if(!(PINB & 0b00010000)){
-				TX0_char('1');
-				long_key_flag = 0;
+		if(RX_cmd_count){
+			RX_cmd_count--;
+			if(!strcmp(buffer[cmd_idx],"led on")){
+				PORTB |= 1 << PORTB5;
 			}
-			else if(!(PINB & 0b00100000)){
-				TX0_char('2');
-				long_key_flag = 0;
+			else if(!strcmp(buffer[cmd_idx],"led off")){
+				PORTB &= ~(1 << PORTB5);
 			}
-		}
-		else {
-			if((PINB & 0b00010000) && (PINB & 0b00100000)){
-				long_key_flag = 1;
+			else if(!strcmp(buffer[cmd_idx],"led toggle")){
+				PORTB ^= 1 << PORTB5;
 			}
+			_delay_ms(1000);
+			cmd_idx++;
+			cmd_idx = cmd_idx % COMMAND_MAX;
 		}
 	}
 	return 0;
