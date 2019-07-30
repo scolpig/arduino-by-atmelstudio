@@ -8,6 +8,7 @@
 #define F_CPU 16000000UL
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <avr/eeprom.h>
 #include "FND4digit.h"
 #include "Timer.h"
 #include "DHT11.h"
@@ -16,11 +17,15 @@ extern char dotmatrix_row[8];
 extern char JEONG[8];
 extern const char KYOUNG[8];
 extern const char YOON[8];
+extern uint32_t dotmatrix3ary[8];
+extern uint8_t dotmatrix[8];
 extern char name[3][8];
 extern char FND4digit_digit[4];
 extern char FND[4];
 extern char FND4digit_font[10];
 
+extern void Dotmatrix_shift_out(uint32_t data);
+extern void Dotmatrix_74595_out(uint8_t data, uint8_t row);
 volatile char start_flag=1, lap_flag, clear_flag, time_flag, countdown_flag;
 volatile char speakout_flag;
 volatile int msec;
@@ -39,7 +44,8 @@ ISR(TIMER0_COMPA_vect){
 		}
 		//FND_clock(sec, min);
 	}
-	/*if(!(msec%10)){
+	/*** FND에 시간 출력
+	if(!(msec%10)){
 		if(lap_flag)time_flag = 1;
 	}
 	if(clear_flag){
@@ -50,13 +56,24 @@ ISR(TIMER0_COMPA_vect){
 		sec = 0;
 		min = 0;
 	}*/
+	/***** FND 출력 
 	i++;
 	if(i>=4)i=0;
 	FND_COM_PORT &= 0b00001111;
 	FND_shift_out(FND[i]);
-	FND_COM_PORT |= FND4digit_digit[i];
+	FND_COM_PORT |= FND4digit_digit[i];*/
 	
-	//if(!(msec%500))PORTB ^= 1<<PORTB5;
+	/*  /// ** Dot Matrix 3개 Array 출력 
+	i++;
+	if(i>7)i=0;
+	Dotmatrix_shift_out(dotmatrix3ary[i]);
+	*/
+	
+	i++;
+	if(i>7)i=0;
+	Dotmatrix_74595_out(dotmatrix[i], 1<<i);
+		
+	if(!(msec%500))PORTB ^= 1<<PORTB5;	// On Board Led Toggle
 }
 
 int Timer_main(void){
@@ -73,6 +90,14 @@ int Timer_main(void){
 	FND4digit_init_shiftR();
 	DHT11_init();
 	sei();
+	char byA;
+	//byA = 180;
+	//eeprom_update_byte((uint8_t*)46, byA);
+	OCR1A = 160;
+	FND_update_value(OCR1A);
+	_delay_ms(2000);
+	byA = eeprom_read_byte((const uint8_t*)46);
+	
 	
 	while(1){
 		count++;
@@ -99,7 +124,7 @@ int Timer_main(void){
 		}
 		if(red_up_down_flag){
 			red++;
-			if(red >= 150)red_up_down_flag = 0;
+			if(red >= 250)red_up_down_flag = 0;
 		}
 		else {
 			red--;
@@ -113,10 +138,11 @@ int Timer_main(void){
 			blue -= 2;
 			if(blue <= 0)blue_up_down_flag = 1;
 		}
-		//OCR1A = red;
-		OCR1B = blue;
-		OCR2A = green;
-		//FND_update_value(OCR1A);
+		//OCR1A = 180;
+		//OCR1B = blue;
+		//OCR2A = green;
+		OCR1A = byA;
+		FND_update_value(OCR1A);
 		
 		_delay_ms(30);
 	}

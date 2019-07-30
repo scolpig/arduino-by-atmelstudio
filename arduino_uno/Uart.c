@@ -24,7 +24,7 @@ ISR(USART_RX_vect){
 	static char idx = 0, buf_idx=0;
 	RX_data = UDR0;
 	if(idx < BUFFER_MAX && RX_cmd_count <= COMMAND_MAX){
-		if(RX_data == '\r' || RX_data == '\n'){
+		if(RX_data == '\n'){
 			buffer[buf_idx][idx] = '\0';
 			idx = 0;
 			RX_cmd_count++;
@@ -44,8 +44,8 @@ int Uart_main(void){
 	char cmd_idx = 0;
 	UART0_init(9600);
 	_delay_ms(1);
-	DDRB |= 1 << PORTB5;
-	PORTB &= ~(1 << PORTB5);
+	DDRB |= 1 << PORTB2 | 1 << PORTB3 | 1 << PORTB4 | 1 << PORTB5;
+	PORTB &= ~(1 << PORTB2 | 1 << PORTB3 | 1 << PORTB4 | 1 << PORTB5);
 	sei();
 	
 	while(1){
@@ -61,7 +61,19 @@ int Uart_main(void){
 			else if(!strcmp(buffer[cmd_idx],"led toggle")){
 				PORTB ^= 1 << PORTB5;
 			}
-			_delay_ms(1000);
+			else if(!strcmp(buffer[cmd_idx],"light toggle")){
+				PORTB ^= 1 << PORTB2;
+			}
+			else if(!strcmp(buffer[cmd_idx],"fan toggle")){
+				PORTB ^= 1 << PORTB3;
+			}
+			else if(!strcmp(buffer[cmd_idx],"blind toggle")){
+				PORTB ^= 1 << PORTB4;
+			}
+			else if(!strcmp(buffer[cmd_idx],"valve toggle")){
+				PORTB ^= 1 << PORTB5;
+			}
+			//_delay_ms(1000);
 			cmd_idx++;
 			cmd_idx = cmd_idx % COMMAND_MAX;
 		}

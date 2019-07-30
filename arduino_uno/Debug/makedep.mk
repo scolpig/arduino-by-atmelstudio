@@ -10,6 +10,10 @@ DHT11.c
 
 Dot_matrix.c
 
+Dot_matrix_3_array.c
+
+Dot_matrix_74595.C
+
 External_INT.c
 
 FND.c

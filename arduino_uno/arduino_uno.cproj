@@ -146,6 +146,18 @@
     <Compile Include="Dot_matrix.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Dot_matrix_3_array.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Dot_matrix_3_array.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Dot_matrix_74595.C">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Dot_matrix_74595.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="External_INT.c">
       <SubType>compile</SubType>
     </Compile>

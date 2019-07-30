@@ -41,6 +41,8 @@ C_SRCS +=  \
 ../Bluetooth.c \
 ../DHT11.c \
 ../Dot_matrix.c \
+../Dot_matrix_3_array.c \
+../Dot_matrix_74595.C \
 ../External_INT.c \
 ../FND.c \
 ../FND4digit.c \
@@ -65,6 +67,8 @@ ADC.o \
 Bluetooth.o \
 DHT11.o \
 Dot_matrix.o \
+Dot_matrix_3_array.o \
+Dot_matrix_74595.o \
 External_INT.o \
 FND.o \
 FND4digit.o \
@@ -82,6 +86,8 @@ ADC.o \
 Bluetooth.o \
 DHT11.o \
 Dot_matrix.o \
+Dot_matrix_3_array.o \
+Dot_matrix_74595.o \
 External_INT.o \
 FND.o \
 FND4digit.o \
@@ -99,6 +105,8 @@ ADC.d \
 Bluetooth.d \
 DHT11.d \
 Dot_matrix.d \
+Dot_matrix_3_array.d \
+Dot_matrix_74595.d \
 External_INT.d \
 FND.d \
 FND4digit.d \
@@ -116,6 +124,8 @@ ADC.d \
 Bluetooth.d \
 DHT11.d \
 Dot_matrix.d \
+Dot_matrix_3_array.d \
+Dot_matrix_74595.d \
 External_INT.d \
 FND.d \
 FND4digit.d \
@@ -164,6 +174,20 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./Dot_matrix.o: .././Dot_matrix.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./Dot_matrix_3_array.o: .././Dot_matrix_3_array.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./Dot_matrix_74595.o: .././Dot_matrix_74595.C
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

@@ -23,10 +23,12 @@ int ADC_main(void){
 		printf("Potentiometer : %d.%d%d \t", value/100%10, value/10%10, value%10);
 		value = ADC_converting_value(1);
 		printf("CDS : %d.%d%d \t", value/100%10, value/10%10, value%10);*/
-		value = ADC_converting_value(2);
+		//value = ADC_converting_value(2);
 		//distance = 20.0 / (value / 100.0 -0.3);
-		distance = 23.7 / (value/100.0 - 0.19);
-		printf("Distance : %d.%d%d \n", distance/100%10, distance/10%10, distance%10);
+		//distance = 23.7 / (value/100.0 - 0.19);
+		distance = volt_to_cm(ADC_converting_value(0));
+		printf("Distance : %d", distance);
+		//printf("Distance : %d.%d%d \n", distance/100%10, distance/10%10, distance%10);
 		_delay_ms(500);
 	}
 	return 0;

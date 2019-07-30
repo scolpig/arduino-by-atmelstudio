@@ -9,16 +9,19 @@
 #define F_CPU 16000000UL
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <avr/eeprom.h>
 #include "FND4digit.h"
 #include "Timer.h"
 
-extern int Uart_main(void);
+
+extern int Dot_matrix_74595_main(void);
 
 int main(void)
 {
-    
-	Uart_main();
-	sei();
+	DDRB |= 1 << PORTB5;
+    sei();
+	Dot_matrix_74595_main();
+	
     while (1) 
     {
 		
